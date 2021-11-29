@@ -17,16 +17,13 @@ python manage.py runserver
 
 ```shell script
 docker-compose up
-
-# Linux
-x-www-browser http://localhost:8000/docs
-
-# macOS
-open http://localhost:8000/docs
-
-# PowerShell
-start http://localhost:8000/docs
 ```
+
+## API documentation
+
+Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
+
+ReDoc: [http://localhost:8000/redoc](http://localhost:8000/redoc)
 
 ## Unit tests
 
