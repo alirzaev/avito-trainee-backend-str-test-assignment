@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+  app:
+    build:
+      context: '.'
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DJANGO_SETTINGS_MODULE: 'config.settings_docker'
+      DATABASE_URL: 'postgresql://postgres:postgres@db/postgres'
+    ports:
+      - '8000:80'
+    command: ["./docker/wait-for-it.sh", "db:5432", "--", "./docker/runserver.sh"]
