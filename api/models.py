@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models.fields.related import ForeignKey
 
 
 class Room(models.Model):
@@ -18,7 +17,7 @@ class Booking(models.Model):
 
     end_date = models.DateField()
 
-    room = ForeignKey(Room, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Booking of '{self.room} ({self.begin_date}-{self.end_date})"
+        return f"Booking of '{self.room}' ({self.begin_date}-{self.end_date})"
