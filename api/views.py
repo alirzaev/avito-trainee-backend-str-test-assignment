@@ -13,19 +13,6 @@ from .serializers import BookingSerializer, RoomSerializer
         summary='Get a list of rooms',
         tags=['room'],
         auth=[{}],
-        parameters=[
-            OpenApiParameter(
-                name='ordering',
-                description='Which field to use when ordering the results.',
-                type={
-                    'type': 'array',
-                    'items': {
-                        'type': 'string',
-                        'enum': ['price', 'created_at', '-price', '-created_at']
-                    }
-                }
-            )
-        ],
         examples=[
             OpenApiExample(
                 name='A valid output example',
@@ -91,17 +78,6 @@ class RoomView(mixins.CreateModelMixin,
         tags=['booking'],
         auth=[{}],
         parameters=[
-            OpenApiParameter(
-                name='ordering',
-                description='Which field to use when ordering the results.',
-                type={
-                    'type': 'array',
-                    'items': {
-                        'type': 'string',
-                        'enum': ['begin_date', '-begin_date']
-                    }
-                }
-            ),
             OpenApiParameter(
                 name='room',
                 description='A unique integer value identifying the room.',

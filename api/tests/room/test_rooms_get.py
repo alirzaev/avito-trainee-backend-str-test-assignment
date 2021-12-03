@@ -114,14 +114,14 @@ def test_get_rooms_price_asc_date_asc(client, rooms_input):
         room.save()
 
     response = client.get(reverse('room-list'), data={
-        'ordering': ['price', 'created_at']
+        'ordering': 'price,created_at'
     })
 
     assert response.status_code == 200
 
     actual = [room['id'] for room in response.json()]
     expected = [
-        room.id for room in Room.objects.order_by('created_at', 'price')
+        room.id for room in Room.objects.order_by('price', 'created_at')
     ]
 
     assert actual == expected
@@ -136,14 +136,14 @@ def test_get_rooms_price_desc_date_desc(client, rooms_input):
         room.save()
 
     response = client.get(reverse('room-list'), data={
-        'ordering': ['-price', '-created_at']
+        'ordering': '-price,-created_at'
     })
 
     assert response.status_code == 200
 
     actual = [room['id'] for room in response.json()]
     expected = [
-        room.id for room in Room.objects.order_by('-created_at', '-price')
+        room.id for room in Room.objects.order_by('-price', '-created_at')
     ]
 
     assert actual == expected
