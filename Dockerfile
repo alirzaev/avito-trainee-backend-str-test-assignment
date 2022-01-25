@@ -10,4 +10,7 @@ COPY . .
 
 RUN python manage.py collectstatic --no-input
 
+RUN chmod +x ./docker/wait-for-it.sh
+RUN chmod +x ./docker/runserver.sh
+
 CMD ["./docker/runserver.sh"]
